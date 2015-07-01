@@ -1,0 +1,10 @@
+{
+  "name": "Templatus",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Sergey Suvorov",
+  "devDependencies": {
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-hogan": "^0.3.0"
+  }
+}

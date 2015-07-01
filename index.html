@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- OUTPUT -->
+<b>Hogan.compile</b>
+<div id="view">
+    <!-- Works fine -->
+</div>
+<br/><br/><br/><br/><br/><br/>
+<b>PRECOMPILED:</b>
+<div id="precompiled">
+    <!-- compile error here -->
+</div>
+<!-- ************************* -->
+
+
+<script src="http://twitter.github.com/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
+
+<!-- This tempalate is generated with hogan-grunt from index.mustache file -->
+<script src="templates/build/templatesPrecompiled.js"></script>
+
+<!-- This template the same as index.mustache but it's a JS file -->
+<script src="templates/build/templateAsJS.js"></script>
+
+
+<script>
+    (function() {
+        var view = document.getElementById('view');
+        var precompiledView = document.getElementById('precompiled');
+
+        // Just preparing data for renderin
+        function prepareData() {
+            // Class
+            function MediaItem() {
+                this.title = 'TITLE';
+                this.seasonNumber = 2;
+                this.isTV = true;
+
+                this.localStrings = {
+                    season: 'Affalien'
+                }
+            }
+
+            MediaItem.prototype.localizeText = function() {
+                return function(text) {
+                    return this.localStrings[text];
+                }
+            };
+
+            var mediaItem = new MediaItem();
+
+
+            return {
+                mediaItems: [
+                    mediaItem,
+                    mediaItem
+                ]
+            };
+        }
+
+        // GO-GO-GO!
+        var mediaItems = prepareData();
+
+        // 1. Compile with hogan and then render - Works fine!
+        var html = Hogan.compile(templateString);
+        view.innerHTML = html.render(mediaItems);
+
+        // 2. precompiled doesn't work
+        precompiledView.innerHTML = templates['index.mustache'].render(mediaItems);
+    })();
+</script>
+</body>
+</html>

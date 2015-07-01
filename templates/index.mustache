@@ -1,0 +1,6 @@
+{{#mediaItems}}
+    <p>
+        <div>{{title}}</div>
+        <span> {{getLatestBroadcastDate}}{{#isTV}} {{#seasonNumber}}{{#localizeText}}season{{/localizeText}} {{seasonNumber}}{{/seasonNumber}}{{#seasonEpisodeNumber}} : {{#localizeText}}episode{{/localizeText}} {{seasonEpisodeNumber}}{{/seasonEpisodeNumber}} {{/isTV}} {{#formatLength}} ({{formatLengthNoSeconds}}) {{/formatLength}}</span>
+    </p>
+{{/mediaItems}}
